@@ -1,0 +1,158 @@
+.hero {
+  padding: 80px 24px 60px;
+  background: radial-gradient(ellipse 80% 60% at 60% 30%, #e8f4ed 0%, transparent 70%),
+              radial-gradient(ellipse 60% 50% at 20% 80%, #fdf3e3 0%, transparent 60%),
+              var(--paper);
+}
+
+.heroInner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 12px; font-weight: 500;
+  color: var(--green); background: var(--green-soft);
+  padding: 5px 12px; border-radius: 99px;
+  margin-bottom: 20px; letter-spacing: 0.3px;
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -1px; color: var(--ink);
+  margin-bottom: 20px;
+}
+.h1 em { color: var(--green); font-style: italic; }
+
+.sub {
+  font-size: 17px; color: var(--ink-soft);
+  line-height: 1.7; max-width: 440px;
+  margin-bottom: 32px;
+}
+
+.heroCta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+
+.btnPrimary {
+  padding: 13px 28px; border-radius: var(--radius-sm);
+  background: var(--green); color: white;
+  font-size: 15px; font-family: var(--font-body);
+  text-decoration: none; font-weight: 500;
+  transition: all 0.15s; border: 1px solid var(--green);
+}
+.btnPrimary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+.btnSecondary {
+  padding: 13px 28px; border-radius: var(--radius-sm);
+  background: transparent; color: var(--ink);
+  font-size: 15px; font-family: var(--font-body);
+  text-decoration: none; font-weight: 400;
+  transition: all 0.15s; border: 1px solid var(--border-mid);
+}
+.btnSecondary:hover { background: var(--paper-warm); }
+
+/* ── Hero Card ── */
+.heroCard {
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+
+.cardInner {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.cardLevel {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cardTime { font-size: 12px; color: var(--ink-faint); }
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 500;
+  color: var(--ink); margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+
+.cardPreview {
+  font-size: 16px; line-height: 1.9;
+  color: var(--ink); margin-bottom: 16px;
+}
+
+.wordDemo {
+  border-bottom: 1.5px dashed var(--ink-faint);
+  cursor: pointer; padding: 0 1px;
+}
+.wordDemoGreen {
+  background: var(--green-soft); color: var(--green);
+  border-radius: 3px; padding: 0 3px; cursor: pointer;
+}
+
+.cardPopup {
+  background: var(--paper);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-md);
+  padding: 12px 16px; margin-bottom: 16px;
+  animation: popIn 0.3s 0.6s ease both;
+  opacity: 0; animation-fill-mode: both;
+}
+.popupWord { font-family: var(--font-display); font-size: 18px; color: var(--ink); margin-bottom: 4px; }
+.popupTrans { font-size: 15px; color: var(--green); font-weight: 500; margin-bottom: 8px; }
+.popupRow { display: flex; gap: 6px; }
+.popupTag {
+  font-size: 11px; padding: 2px 8px; border-radius: 99px;
+  background: var(--paper-warm); color: var(--ink-soft);
+  border: 1px solid var(--border);
+}
+
+.cardFooter {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font-size: 12px; color: var(--ink-faint);
+}
+
+/* ── Levels ── */
+.levels { padding: 60px 24px; border-top: 1px solid var(--border); }
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400;
+  color: var(--ink); margin-bottom: 28px;
+  letter-spacing: -0.5px;
+}
+
+.levelsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.levelCard {
+  padding: 20px 16px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: white; text-decoration: none;
+  transition: all 0.2s;
+}
+.levelCard:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.levelBadge {
+  width: 36px; height: 36px; border-radius: 50%;
+  color: white; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+}
+.levelLabel { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.levelDesc  { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .heroInner { grid-template-columns: 1fr; gap: 40px; }
+  .levelsGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroCard { display: none; }
+}

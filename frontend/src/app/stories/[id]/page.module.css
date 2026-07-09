@@ -1,0 +1,147 @@
+.page {
+  min-height: 100vh;
+  background: radial-gradient(ellipse 100% 40% at 50% 0%, #e8f4ed40, transparent),
+              var(--paper);
+  padding: 40px 24px 80px;
+}
+
+.inner { max-width: 992px; margin: 0 auto; }
+
+.storyHeader { margin-bottom: 32px; }
+
+.back {
+  font-size: 13px; color: var(--ink-soft); text-decoration: none;
+  display: inline-block; margin-bottom: 16px;
+  transition: color 0.15s;
+}
+.back:hover { color: var(--green); }
+
+.meta {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+
+.topic     { font-size: 13px; color: var(--ink-soft); }
+.wordCount { font-size: 12px; color: var(--ink-faint); margin-left: auto; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 400; color: var(--ink);
+  line-height: 1.15; letter-spacing: -0.8px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+
+.toggleBtn {
+  font-size: 13px; padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-mid);
+  background: white; color: var(--ink);
+  cursor: pointer; transition: all 0.15s; font-family: var(--font-body);
+}
+.toggleBtn:hover { border-color: var(--green); }
+.toggleBtn.on { background: var(--green); color: white; border-color: var(--green); }
+
+.clickHint { font-size: 12px; color: var(--ink-faint); }
+
+/* Progress bar */
+.progressWrap {
+  height: 3px; background: var(--paper-deep);
+  border-radius: 99px; margin-bottom: 36px; overflow: hidden;
+}
+.progressBar {
+  height: 100%; background: var(--green);
+  border-radius: 99px; transition: width 0.4s ease;
+}
+
+/* Story content */
+.contentWrapper{
+  display: flex;
+  gap: 20px
+}
+.content { margin-bottom: 48px; }
+
+.paragraph {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.paragraph:last-child { border-bottom: none; }
+
+.germanText {
+  font-size: 19px; line-height: 2;
+  color: var(--ink); font-family: var(--font-display);
+  font-weight: 300; letter-spacing: 0.1px;
+}
+
+/* Clickable words */
+.word {
+  cursor: pointer; border-radius: 3px;
+  padding: 1px 2px; transition: background 0.12s;
+  display: inline;
+}
+.word:hover { background: var(--paper-warm); }
+
+.vocabWord {
+  cursor: pointer; border-radius: 3px;
+  padding: 1px 3px; transition: all 0.12s;
+  display: inline;
+  border-bottom: 1.5px solid rgba(26,107,74,0.35);
+  color: var(--ink);
+}
+.vocabWord:hover { background: var(--green-soft); border-bottom-color: var(--green); }
+.vocabWord.saved { background: var(--green-soft); color: var(--green); border-bottom-color: var(--green); }
+
+.englishText {
+  font-size: 14px; line-height: 1.8;
+  color: var(--ink-soft); margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--paper-warm);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--green-mid);
+  font-style: italic;
+}
+
+/* Glossary */
+.glossary {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+}
+
+.glossaryTitle {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 400;
+  color: var(--ink); margin-bottom: 16px; letter-spacing: -0.3px;
+}
+
+.glossaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.glossaryItem {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  cursor: pointer; transition: all 0.15s;
+}
+.glossaryItem:hover { border-color: var(--green); background: var(--green-soft); }
+.glossaryItem.glossarySaved { background: var(--green-soft); border-color: var(--green); }
+
+.glossaryWord  { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.glossaryTrans { font-size: 13px; color: var(--green); }
+.glossaryGender{ font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
+
+/* Loading / Error */
+.loadingWrap, .errorWrap {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 60vh;
+  gap: 16px; color: var(--ink-soft); font-size: 15px;
+}
+.loadingPulse { animation: pulse 1.5s ease infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.errorWrap a { color: var(--green); text-decoration: none; }

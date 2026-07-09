@@ -1,0 +1,302 @@
+.narrator {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.micIcon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.narratorLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.voiceName {
+  font-size: 11px;
+  color: var(--green);
+  margin-top: 1px;
+}
+
+.noGermanWarning {
+  font-size: 11px;
+  color: var(--amber);
+  margin-top: 1px;
+}
+
+.settingsBtn {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-mid);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.settingsBtn:hover, .settingsBtn.active {
+  background: var(--paper-warm);
+  color: var(--ink);
+}
+
+/* ── Progress ── */
+.progressWrap { margin-bottom: 16px; }
+
+.progressTrack {
+  height: 3px;
+  background: var(--paper-deep);
+  border-radius: 99px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.progressLabel {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* ── Main controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.playBtn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  box-shadow: 0 2px 8px rgba(26,107,74,0.3);
+  flex-shrink: 0;
+}
+.playBtn:hover { background: var(--green-mid); transform: scale(1.05); }
+
+.controlBtn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-mid);
+  background: white;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.controlBtn:hover:not(:disabled) { background: var(--paper-warm); color: var(--ink); }
+.controlBtn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ── Settings ── */
+.settings {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeIn 0.2s ease;
+}
+
+.settingRow { display: flex; flex-direction: column; gap: 6px; }
+
+.settingLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingValue {
+  font-weight: 400;
+  color: var(--green);
+  font-size: 12px;
+}
+
+.select {
+  font-size: 13px;
+  font-family: var(--font-body);
+  padding: 7px 10px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+.select:focus { border-color: var(--green); }
+
+.slider {
+  width: 100%;
+  accent-color: var(--green);
+  cursor: pointer;
+  height: 4px;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.applyBtn {
+  padding: 8px 16px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s;
+  align-self: flex-end;
+}
+.applyBtn:hover { background: var(--green-mid); }
+
+/* ── Paragraph list ── */
+.paraList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.paraBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  font-family: var(--font-body);
+}
+.paraBtn:hover { background: var(--paper-warm); }
+
+.paraBtn.paraCurrent {
+  background: var(--green-soft);
+  border-color: rgba(26,107,74,0.2);
+}
+.paraBtn.paraDone { opacity: 0.5; }
+
+.paraBtnNum {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  width: 16px;
+  flex-shrink: 0;
+}
+.paraCurrent .paraBtnNum { color: var(--green); }
+
+.paraBtnPreview {
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.paraCurrent .paraBtnPreview { color: var(--ink); }
+
+.paraDoneCheck {
+  font-size: 11px;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+/* Animated bars for currently playing paragraph */
+.paraPlaying {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.paraPlaying span {
+  width: 3px;
+  border-radius: 99px;
+  background: var(--green);
+  animation: soundBars 0.8s ease infinite alternate;
+}
+.paraPlaying span:nth-child(1) { height: 6px;  animation-delay: 0s; }
+.paraPlaying span:nth-child(2) { height: 12px; animation-delay: 0.2s; }
+.paraPlaying span:nth-child(3) { height: 8px;  animation-delay: 0.4s; }
+
+@keyframes soundBars {
+  from { transform: scaleY(0.4); }
+  to   { transform: scaleY(1); }
+}
+
+/* ── Current word highlight ── */
+.currentWord {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeIn 0.15s ease;
+}
+
+/* ── Unsupported ── */
+.unsupported {
+  padding: 16px 20px;
+  background: var(--amber-soft);
+  border: 1px solid rgba(193,125,42,0.2);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--amber);
+  margin-bottom: 24px;
+}
