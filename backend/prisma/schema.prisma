@@ -1,0 +1,154 @@
+// This is your Prisma schema file
+// It defines your database tables and relationships
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  savedWords    SavedWord[]
+  readStories   ReadStory[]
+  writingEntries WritingEntry[]
+  streaks       Streak?
+
+  @@map("users")
+}
+
+model Story {
+  id          String   @id @default(cuid())
+  title       String
+  level       Level    // A1, A2, B1, B2, C1
+  topic       String
+  source      Source   @default(AI_GENERATED)
+  sourceUrl   String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  paragraphs  Paragraph[]
+  vocabulary  Vocabulary[]
+  readBy      ReadStory[]
+
+  @@map("stories")
+}
+
+model Paragraph {
+  id        String @id @default(cuid())
+  order     Int
+  germanText  String
+  englishText String
+  storyId   String
+  story     Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+
+  @@map("paragraphs")
+}
+
+model Vocabulary {
+  id          String   @id @default(cuid())
+  word        String
+  translation String
+  type        String   // noun, verb, adjective, adverb
+  gender      String?  // der, die, das (for nouns only)
+  example     String?
+  level       Level
+  storyId     String?
+  story       Story?   @relation(fields: [storyId], references: [id], onDelete: SetNull)
+
+  savedBy     SavedWord[]
+
+  @@map("vocabulary")
+}
+
+model SavedWord {
+  id           String     @id @default(cuid())
+  userId       String
+  vocabularyId String
+  savedAt      DateTime   @default(now())
+  reviewCount  Int        @default(0)
+  nextReview   DateTime?
+
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabulary   Vocabulary @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, vocabularyId])
+  @@map("saved_words")
+}
+
+model ReadStory {
+  id       String   @id @default(cuid())
+  userId   String
+  storyId  String
+  readAt   DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  story    Story    @relation(fields: [storyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, storyId])
+  @@map("read_stories")
+}
+
+model Streak {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  currentDays Int      @default(0)
+  longestDays Int      @default(0)
+  lastReadAt  DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("streaks")
+}
+
+enum Level {
+  A1
+  A2
+  B1
+  B2
+  C1
+}
+
+enum Source {
+  AI_GENERATED
+  RSS_FEED
+  MANUAL
+}
+
+model WritingEntry {
+  id           String   @id @default(cuid())
+  userId       String
+  mode         String   // "free" | "translate"
+  level        String   // A1 | A2 | B1 | B2 | C1
+  promptText   String?  // English sentence (for translate mode)
+  userText     String   // what the user wrote in German
+  correctedText String? // AI corrected version
+  feedback     Json?    // { score, errors: [], tips: [] }
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("writing_entries")
+}
+
+model DailyPrompt {
+  id          String   @id @default(cuid())
+  date        String   @unique // "2026-05-04" — one per day
+  level       String
+  englishText String   // sentence to translate
+  hints       Json?    // ["hint1", "hint2"]
+  sampleAnswer String? // one correct German version
+  createdAt   DateTime @default(now())
+
+  @@map("daily_prompts")
+}
